@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+    <style>
+        .navbar-custom {
+            background-color: #ffffff;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+        }
+
+        .navbar-brand img {
+            margin-right: 0.5rem;
+        }
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+        }
+
+        .search-input {
+            border-radius: 25px;
+            flex: 1;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #ddd;
+            font-size: 1.5rem;
+        }
+
+        .search-section {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-dropdown {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 50%;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px rgba(254, 253, 253, 0.886);
+            z-index: 1050;
+        }
+
+        .recent-search,
+        .popular-items {
+            padding: 20px;
+            font-size: 1.3rem;
+        }
+
+        .filters-row {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .filters-row button {
+            flex-shrink: 0;
+            width: 130px;
+        }
+
+        @media (max-width: 576px) {
+            .sidebar .nav-item {
+                display: none;
+                align-items: center;
+                justify-content: start;
+            }
+
+            .sidebar-toggler {
+                display: block;
+            }
+
+            .search-input {
+                width: 100%;
+                padding: 0.5rem;
+            }
+        }
+
+        .sidebar {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-right: 1px solid #dee2e6;
+            flex-wrap: nowrap;
+        }
+
+        .sidebar-container {
+            display: flex;
+        }
+
+        @media (max-width: 576px) {
+            .sidebar {
+                position: sticky;
+                top: auto;
+            }
+        }
+
+        .navbar-brand img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                width: 200px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .navbar-brand img {
+                width: 200px;
+            }
+        }
+
+        .search-input {
+            border-radius: 25px;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #ddd;
+        }
+
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1050;
+        }
+
+        .recent-search {
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 576px) {
+            .search-input {
+                width: 100%;
+            }
+
+            .search-dropdown {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!--navbar section-->
+        <nav class="navbar navbar-expand bg-light navbar-custom">
+            <div class="container">
+
+                <!--toggle buttn-->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar Content -->
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <div class="container d-flex w-100% justify-content-between align-items-center">
+
+                        <!-- Left Section -->
+                        <!--logo section-->
+
+                        <div class="col-2 pt-2">
+                            <ul class="list-unstyled d-flex gap-4  mb-0">
+                                <li class=" pt-3">
+                                    <form action="" class="dropdown ">
+
+
+                                        <a href="#" class="w-100 " data-bs-toggle="dropdown" data-bs-target="#065fd4">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvOWnyNrquADFZ36BVEPcrLYuyFEBX2H6QHw&s"
+                                                alt="" width="20px">
+                                        </a>
+
+                                        <div class="dropdown-menu  mt-2 mx-0  px-2 " id="abcc" style="width: 290px;">
+
+
+                                            <ul
+                                                class="list-unstyled d-flex p-2 dropdown-item gap-4 bg-body-secondary rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://www.freeiconspng.com/thumbs/homepage-icon-png/home-page-icon-0.png"
+                                                            alt="" height="23px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Home</li>
+                                            </ul>
+
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bg- rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://img.icons8.com/m_outlined/600/youtube-shorts.png"
+                                                            alt="" height="23px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Shorts</li>
+                                            </ul>
+
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://static.thenounproject.com/png/4530414-200.png"
+                                                            alt="" height="23px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Subscriptions</li>
+                                            </ul>
+                                            <hr>
+                                            <ul
+                                                class="list-unstyled d-flex p-2 dropdown-item gap-4 bg-body-secondary rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">YOU</li>
+                                                <a href="" class="pt-0"><img
+                                                        src="https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/arrow-thin-chevron-right-icon.png"
+                                                        alt="" height="10px" data-bs-toggle="tooltip" title="Home"
+                                                        style="align-items: center;">
+                                                </a>
+                                            </ul>
+
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHCpVYNeB-TyaWNeTtzM1z_TMKKNiFvL1jVyo7aQADFkBH3EqsGayBA1Jz79oB7Z5VLCk&usqp=CAU"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">History</li>
+                                            </ul>
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/playlist-videos-icon.png"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Playlists</li>
+                                            </ul>
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://uxwing.com/wp-content/themes/uxwing/download/controller-and-music/play-rectangle-icon.png"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Your Videos</li>
+                                            </ul>
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://uxwing.com/wp-content/themes/uxwing/download/time-and-date/clock-line-icon.png"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Watch Later</li>
+                                            </ul>
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://uxwing.com/wp-content/themes/uxwing/download/hand-gestures/thumbs-up-line-icon.png"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Liked videos</li>
+                                            </ul>
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/download-install-line-icon.png"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Downloads</li>
+                                            </ul>
+
+                                            <hr>
+                                            <h6><b>Subscriptions</b></h6>
+
+
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Code With Herry</li>
+                                            </ul>
+
+
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Software Engineer</li>
+                                            </ul>
+
+
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Har Pal Geo</li>
+                                            </ul>
+
+
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Chubby Meows</li>
+                                            </ul>
+
+
+                                            <ul class="list-unstyled d-flex p-2 dropdown-item gap-4 bgy rounded  mb-1">
+                                                <li>
+                                                    <a href="" class="pt-0"><img
+                                                            src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+                                                            alt="" height="20px" data-bs-toggle="tooltip" title="Home"
+                                                            style="align-items: center;">
+                                                    </a>
+                                                </li>
+                                                <li class="fw-semibold">Abida Parveen</li>
+                                            </ul>
+                                        </div>
+
+                                    </form>
+                                </li>
+                                <li>
+                                    <a href="#" class="navbar-brand d-flex align-items-center gap-0">
+                                        <img src="https://cdn.mos.cms.futurecdn.net/8gzcr6RpGStvZFA2qRt4v6-1222-80.jpg"
+                                            alt="logo">
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="position-relative w-100 mx-auto mt-3" style="max-width: 600px;">
+                            <form class="d-flex flex-grow-1" role="search">
+                                <input type="text" class="form-control search-input" placeholder="Search" id="searchBar"
+                                    aria-expanded="false" data-bs-toggle="dropdown">
+                            </form>
+                            <div class="search-dropdown d-none" id="searchDropdown">
+                                <div class="recent-search">
+                                    <strong>Recent Searches</strong>
+                                    <div>
+                                        <span>Wallpaper<br></span>
+                                        <span>Wallpaper<br></span>
+                                        <span>Wallpaper<br></span>
+                                        <span>Wallpaper<br></span>
+                                        <span>Wallpaper<br></span>
+                                        <span>Wallpaper<br></span>
+                                        <span>Wallpaper<br></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Section -->
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center gap-2">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <img src="https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/add-video-icon.png"
+                                        alt="Create" height="30">
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/bell-line-icon.png"
+                                        alt="Notifications" height="30">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                                    <li><a class="dropdown-item" href="#">Updates</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/woman-user-circle-icon.png"
+                                        class="rounded-circle" height="35">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                    <div class="   " style="width: 350px;  ; margin-top: 0px;">
+                                        <div class="col ">
+                                            <div class="row  ">
+                                                <div class="row bac mx-0 rounded  py-2 mx-0 px-0">
+                                                    <div class="col-3  d-flex ">
+                                                        <a href="profile.html" class="text-decoration-none text-dark">
+                                                            <img src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/woman-user-circle-icon.png"
+                                                                class="mb-3 rounded-circle" alt="" width="60px"
+                                                                height="60px"></a>
+                                                    </div>
+                                                    <div class="col-7 ">
+                                                        <a href="profile.html" class="text-decoration-none text-dark">
+                                                            <h5 class="mb-1">Sania Kousar</h5>
+                                                            <p class="m-0" style="font-size: 12px;">Personal</p>
+                                                            <p class="m-0" style="font-size:12px;">
+                                                                saniayaqub7264@gmail.com
+                                                            </p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mx-0 px-1">
+                                                <p class=" px-2  mt-4" style="font-size: 14px; ">Your accounts</p>
+                                                <a href="" class="butn text-decoration-none text-dark ">
+                                                    <h6 class="p-2 ">Add account</h6>
+                                                </a>
+                                                <a href="" class="butn text-decoration-none text-dark">
+                                                    <h6 class="p-2  ">Convert to business</h6>
+                                                </a>
+                                                <p class="" style="font-size: 14px;">More options</p>
+                                                <a href="" class=" butn text-decoration-none text-dark ">
+                                                    <h6 class="  p-2">Settings</h6>
+                                                </a>
+                                                <a href="" class="butn text-decoration-none text-dark ">
+                                                    <h6 class=" p-2 ">Home feed tuner</h6>
+                                                </a>
+                                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            const searchBar = document.getElementById('searchBar');
+            const searchDropdown = document.getElementById('searchDropdown');
+
+            // Show dropdown when clicking on search bar
+            searchBar.addEventListener('focus', () => {
+                searchDropdown.classList.remove('d-none');
+            });
+
+            // Hide dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!searchBar.contains(e.target) && !searchDropdown.contains(e.target)) {
+                    searchDropdown.classList.add('d-none');
+                }
+            });
+        </script>
+
+
+        <div class="row flex-nowrap">
+            <!-- Sidebar Section -->
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-2 bg-light sidebar">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-2 pt-2 text-white min-vh-100">
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start text-dark"
+                        id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="px-1 align-middle">
+                                <img src="https://uxwing.com/wp-content/themes/uxwing/download/buildings-architecture-real-estate/home-icon.png"
+                                    alt="Messages" height="27">
+                            </a>
+                            <a href="#" class="nav-link align-middle px-0 text-dark">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="px-1 align-middle">
+                                <img src="https://img.icons8.com/m_outlined/600/youtube-shorts.png" alt="Messages"
+                                    height="27">
+                            </a>
+                            <a href="#" class="nav-link px-0 align-middle text-dark">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Shorts</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="px-1 align-middle">
+                                <img src="https://cdn-icons-png.flaticon.com/128/5856/5856419.png" alt="Messages"
+                                    height="27">
+                            </a>
+                            <a href="#" class="nav-link px-0 align-middle text-dark">
+                                <i class="fs-4 bi-bootstrap"></i> <span
+                                    class="ms-1 d-none d-sm-inline">Subscriptions</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="px-1 align-middle">
+                                <img src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/woman-user-circle-icon.png"
+                                    alt="Messages" height="27">
+                            </a>
+                            <a href="#" class="nav-link px-0 align-middle text-dark">
+                                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">You</span> </a>
+                        </li>
+                        <li>
+                            <a href="#" class="px-1 align-middle">
+                                <img src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/download-install-line-icon.png"
+                                    alt="Messages" height="27">
+                            </a>
+                            <a href="#" class="nav-link px-0 align-middle text-dark">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Downloads</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col py-3">
+                <!-- Content Section -->
+                <div class="col-12 col-md-10">
+                    <!-- butons-->
+                    <div class="row py-3 filters-row d-flex flex-nowrap gap-2">
+                        <button class="btn btn-outline-secondary btn-sm">All</button>
+                        <button class="btn btn-outline-secondary btn-sm">Music</button>
+                        <button class="btn btn-outline-secondary btn-sm">LoFi</button>
+                        <button class="btn btn-outline-secondary btn-sm">Pakistani Dramas</button>
+                        <button class="btn btn-outline-secondary btn-sm">Thrillers</button>
+                        <button class="btn btn-outline-secondary btn-sm">Action Movies</button>
+                        <button class="btn btn-outline-secondary btn-sm">Watched</button>
+                        <button class="btn btn-outline-secondary btn-sm">Live</button>
+                        <button class="btn btn-outline-secondary btn-sm">Naat</button>
+                        <button class="btn btn-outline-secondary btn-sm">New to You</button>
+                        <button class="btn btn-outline-secondary btn-sm">Recently Uploaded</button>
+                    </div>
+
+                    <!-- Videos Row -->
+                    <div class="container">
+                        <div class="row gx-2"> 
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/7131684/7131684-sd_506_960_30fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/13764245/13764245-sd_360_640_30fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/4465077/4465077-sd_360_640_25fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-5 px-2 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/6869665/6869665-sd_506_960_25fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--2nd row-->
+                    <div class="container">
+                        <div class="row gx-2"> 
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/7131684/7131684-sd_506_960_30fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/13764245/13764245-sd_360_640_30fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/4465077/4465077-sd_360_640_25fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/6869665/6869665-sd_506_960_25fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--3rd row-->
+                    <div class="container">
+                        <div class="row gx-2"> 
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/7131684/7131684-sd_506_960_30fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/13764245/13764245-sd_360_640_30fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/4465077/4465077-sd_360_640_25fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 col-lg-3 bg-light">
+                                <div class="row">
+                                    <div class="col-12 px-0" style="border-bottom: 1px #00000026 solid;">
+                                        <video
+                                            src="https://videos.pexels.com/video-files/6869665/6869665-sd_506_960_25fps.mp4"
+                                            style="border-radius: 10px;" width="90%" height="auto" controls=""
+                                            class="img-fluid" loop=""></video>
+                                    </div>
+                                    <div class="px-0">
+                                        <ul class="list-unstyled d-flex gap-2 px-5 mb-0">
+                                            <li><a href="" class="text-decoration-none text-dark">
+                                                    <h6 class="mb-0" style="font-size: 16px; font-weight: 500;">Mix –
+                                                        Very
+                                                        Heart Touching Kalam</h6>
+                                                </a></li>
+                                            <li><a href="" style="font-size: 14px; color: rgba(38, 38, 38, 0.795);"
+                                                    class="text-decoration-none">493K views 1 year ago</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
